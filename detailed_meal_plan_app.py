@@ -72,19 +72,30 @@ def create_amazon_link(ingredient):
 
 # Function to generate the weekly meal plan
 def generate_meal_plan(meals):
-    weekly_meal_plan = random.sample(list(meals.items()), 14)
-    return weekly_meal_plan
+    weekly_meal_plan = random.sample(list(meals.items()), 14)  # Ensure there are at least 14 meals defined
+    schedule = {
+        "Monday": weekly_meal_plan[0:2],
+        "Tuesday": weekly_meal_plan[2:4],
+        "Wednesday": weekly_meal_plan[4:6],
+        "Thursday": weekly_meal_plan[6:8],
+        "Friday": weekly_meal_plan[8:10],
+        "Saturday": weekly_meal_plan[10:12],
+        "Sunday": weekly_meal_plan[12:14]
+    }
+    return schedule
 
 # Streamlit app layout
 st.title('Child Weekly Meal Calendar')
 
 if st.button('Generate Meal Plan'):
-    meal_plan = generate_meal_plan(meals)
-    for day, (meal_name, meal_info) in enumerate(meal_plan, start=1):
-        st.subheader(f'Day {day}: {meal_name}')
-        st.write(meal_info['explanation'])
-        for ingredient in meal_info['ingredients']:
-            amazon_link = create_amazon_link(ingredient)
-            st.markdown(f"- [{ingredient}]({amazon_link})")
+    meal_schedule = generate_meal_plan(meals)
+    for day, meals in meal_schedule.items():
+        st.header(day)
+        for meal_name, meal_info in meals:
+            st.subheader(meal_name)
+            st.write(meal_info['explanation'])
+            for ingredient in meal_info['ingredients']:
+                amazon_link = create_amazon_link(ingredient)
+                st.markdown(f"- [{ingredient}]({amazon_link})")
 
 # Run this with `streamlit run your_script.py` in your command line

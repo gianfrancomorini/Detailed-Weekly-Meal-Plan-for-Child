@@ -208,38 +208,10 @@ affiliate_code = "gfm0dd-20"  # Your Amazon affiliate code
 
 st.title('Detailed Weekly Meal Plan for Child')
 
-if st.button('Generate Meal Plan'):
-    all_ingredients = set()
-    for i in range(7):  # For each day of the week
-        st.write(f"### Day {i + 1}")
-
-        selected_meals = random.sample(list(meals.keys()), 2)
-        for meal in selected_meals:
-            st.write(f"**Meal: {meal}**")
-            st.write(meals[meal]['instructions'])
-            all_ingredients.update(meals[meal]['ingredients'])
-
-        selected_snacks = random.sample(list(snacks.keys()), 2)
-        for snack in selected_snacks:
-            st.write(f"**Snack: {snack}**")
-            st.write(snacks[snack]['instructions'])
-            all_ingredients.update(snacks[snack]['ingredients'])
-
-        st.write("\n")
-
-    st.write("### Amazon links to buy ingredients:")
-    for ingredient in all_ingredients:
-        st.write(f"{ingredient}: {generate_amazon_link(ingredient, affiliate_code)}")
-
-st.write("Note: Please ensure the suitability of each ingredient for the child's dietary needs before purchasing.")
-
-
-    
-
-
 allergic_ingredients = st.text_input("Enter allergic ingredients (comma separated)").split(',')
 filtered_meals = {meal_name: details for meal_name, details in meals.items() if not any(allergen in details['ingredients'] for allergen in allergic_ingredients)}
 
+  
 if st.button('Generate Meal Plan'):
     days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
@@ -257,3 +229,13 @@ if st.button('Generate Meal Plan'):
                 st.write(f"{index}. {step}")
             st.image(get_unsplash_image(meal, API_KEY))
         st.write("----")
+
+
+    st.write("### Amazon links to buy ingredients:")
+    for ingredient in all_ingredients:
+        st.write(f"{ingredient}: {generate_amazon_link(ingredient, affiliate_code)}")
+
+st.write("Note: Please ensure the suitability of each ingredient for the child's dietary needs before purchasing.")
+
+
+  

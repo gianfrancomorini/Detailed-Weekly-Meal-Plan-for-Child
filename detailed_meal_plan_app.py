@@ -3,6 +3,46 @@ import random
 
 # Define a dictionary of meals with their explanations and ingredients
 meals = {
+        "Turkey and Cheese Wrap": {
+        "explanation": "Lay out a tortilla, spread with mayonnaise, add turkey slices and cheese, roll up, and slice.",
+        "ingredients": ["Tortilla", "Mayonnaise", "Turkey slices", "Swiss cheese"]
+    },
+    "Baked Sweet Potato": {
+        "explanation": "Pierce sweet potatoes with a fork, bake until tender, split open, and serve with butter and cinnamon.",
+        "ingredients": ["Sweet potatoes", "Butter", "Cinnamon"]
+    },
+    "Chicken Alfredo Pasta": {
+        "explanation": "Cook pasta, sauté chicken pieces, mix with Alfredo sauce, and combine with pasta.",
+        "ingredients": ["Pasta", "Chicken breast", "Alfredo sauce"]
+    },
+    "Mini Meatloaves": {
+        "explanation": "Combine ground beef, breadcrumbs, egg, and ketchup, shape into mini loaves, and bake.",
+        "ingredients": ["Ground beef", "Breadcrumbs", "Egg", "Ketchup"]
+    },
+    "Cheesy Broccoli Rice": {
+        "explanation": "Cook rice, steam broccoli, mix together with cheese until melted and combined.",
+        "ingredients": ["Rice", "Broccoli", "Cheddar cheese"]
+    },
+    "Chicken Caesar Salad": {
+        "explanation": "Toss romaine lettuce with Caesar dressing, top with grilled chicken strips, croutons, and Parmesan cheese.",
+        "ingredients": ["Romaine lettuce", "Caesar dressing", "Chicken strips", "Croutons", "Parmesan cheese"]
+    },
+    "Fish Tacos": {
+        "explanation": "Grill or bake fish, serve in tortillas with cabbage slaw and a creamy sauce.",
+        "ingredients": ["Fish fillets", "Tortillas", "Cabbage", "Mayonnaise", "Lime"]
+    },
+    "Spaghetti Carbonara": {
+        "explanation": "Cook spaghetti, sauté bacon, mix with beaten eggs and Parmesan, and toss with hot pasta.",
+        "ingredients": ["Spaghetti", "Bacon", "Eggs", "Parmesan cheese"]
+    },
+    "Sloppy Joes": {
+        "explanation": "Brown ground beef, mix with sloppy Joe sauce, and serve on hamburger buns.",
+        "ingredients": ["Ground beef", "Sloppy Joe sauce", "Hamburger buns"]
+    },
+    "Vegetable Lasagna": {
+        "explanation": "Layer lasagna noodles with ricotta cheese, cooked vegetables, marinara sauce, and mozzarella, then bake.",
+        "ingredients": ["Lasagna noodles", "Ricotta cheese", "Mixed vegetables", "Marinara sauce", "Mozzarella cheese"]
+    },
     "Pasta with Tomato Sauce": {
         "explanation": "Boil pasta until al dente, drain, and mix with warmed tomato sauce. Serve with grated Parmesan cheese on top.",
         "ingredients": ["Pasta", "Tomato sauce", "Parmesan cheese"]

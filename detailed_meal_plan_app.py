@@ -5,16 +5,6 @@ import requests
 def get_amazon_link(ingredient, referral_code="gfm0dd-20"):
     return f"https://www.amazon.com/s?k={ingredient}&tag={referral_code}"
 
-def get_unsplash_image(query, api_key):
-    url = f"https://api.unsplash.com/search/photos?page=1&query={query}&client_id={api_key}"
-    response = requests.get(url)
-    data = response.json()
-    if data["results"]:
-        return data["results"][0]["urls"]["small"]
-    return "https://via.placeholder.com/150"  # default placeholder if no image found
-
-API_KEY = "y7sY9svzrBEGTMLfN4mFwjjoP_aP11y7lZcLqH7Ml-Q"  # Replace with your Unsplash API key
-
 # Database of child-friendly meals
 MEALS = {
     "Pasta Salad": {

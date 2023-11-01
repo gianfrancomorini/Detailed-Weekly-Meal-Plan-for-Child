@@ -177,7 +177,7 @@ meals = {
         "instructions": ["Place cheese, chicken, peppers, and onions on half of tortilla.", "Fold over and grill until golden brown."],
     },
     "Cheese Pizza": {
-        "instructions": "Spread tomato sauce on pizza dough.", "Top with mozzarella cheese.", "Bake until crust is golden brown.",
+        "instructions": ["Spread tomato sauce on pizza dough.", "Top with mozzarella cheese.", "Bake until crust is golden brown."],
         "ingredients": ["pizza dough", "tomato sauce", "mozzarella cheese"]
     }
     # Note: This is not the complete list, just a snippet for the sake of demonstration.

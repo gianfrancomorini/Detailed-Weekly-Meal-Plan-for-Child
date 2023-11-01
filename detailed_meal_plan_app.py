@@ -213,5 +213,4 @@ for day in days_of_week:
         st.write("---")
 
 
-
 st.write("Note: Click the button to generate a new meal plan for the week.")

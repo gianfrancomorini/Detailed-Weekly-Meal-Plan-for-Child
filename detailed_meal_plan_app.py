@@ -1,48 +1,42 @@
 import streamlit as st
+import random
 
-# Placeholder for your Amazon referral link
-AMAZON_REFERRAL_TAG = "gfm0dd-20"
+# Define a dictionary of meals with their explanations and ingredients
+meals = {
+    "Pasta with Tomato Sauce": {
+        "explanation": "Boil pasta and top with homemade tomato sauce.",
+        "ingredients": ["Pasta", "Tomato sauce", "Parmesan cheese"]
+    },
+    "Grilled Cheese Sandwich": {
+        "explanation": "Grill bread with cheese until golden brown.",
+        "ingredients": ["Bread", "Cheese", "Butter"]
+    },
+    # ... Add more meals as needed
+}
 
-def create_amazon_search_link(ingredient):
-    # URL encode the ingredient name for the Amazon URL
-    return f"https://www.amazon.com/s?k={ingredient.replace(' ', '+')}&tag={AMAZON_REFERRAL_TAG}"
+# Function to create an Amazon link with a referral tag
+def create_amazon_link(ingredient):
+    # This is a placeholder for where you'd construct the URL to search for the ingredient on Amazon
+    # with your referral tag. Since we can't make web requests, this will be a static example.
+    base_url = "https://www.amazon.com/s?k="
+    referral_tag = "gfm0dd-20"
+    return f"{base_url}{ingredient.replace(' ', '+')}&tag={referral_tag}"
 
-def generate_weekly_meals():
-    # This function would ideally generate a dynamic meal plan or retrieve it from a database
-    weekly_meals = {
-        'Monday': {
-            'Breakfast': {
-                'Name': 'Scrambled Eggs with Toast',
-                'Preparation': 'Scramble eggs and serve with a side of toasted bread.',
-                'Ingredients': ['Eggs', 'Bread', 'Butter', 'Salt', 'Pepper']
-            },
-            'Dinner': {
-                'Name': 'Baked Salmon with Vegetables',
-                'Preparation': 'Bake salmon and steam vegetables.',
-                'Ingredients': ['Salmon fillets', 'Broccoli', 'Carrots', 'Olive oil', 'Lemon']
-            }
-        },
-        # ... Add entries for other days of the week
-    }
-    return weekly_meals
+# Function to generate the weekly meal plan
+def generate_meal_plan(meals):
+    weekly_meal_plan = random.sample(list(meals.items()), 14)
+    return weekly_meal_plan
 
-def display_meals(weekly_meals):
-    for day, meals in weekly_meals.items():
-        st.header(day)
-        for meal_time, meal_info in meals.items():
-            st.subheader(meal_info['Name'] + f" ({meal_time})")
-            st.write("Preparation:", meal_info['Preparation'])
-            st.write("Ingredients:")
-            for ingredient in meal_info['Ingredients']:
-                link = create_amazon_search_link(ingredient)
-                st.markdown(f"- {ingredient} ([Buy on Amazon]({link}))")
+# Streamlit app layout
+st.title('Child Weekly Meal Calendar')
 
-def app():
-    st.title("Child Weekly Meal Calendar")
-    
-    if st.button('Generate Meal Calendar'):
-        weekly_meals = generate_weekly_meals()
-        display_meals(weekly_meals)
+if st.button('Generate Meal Plan'):
+    meal_plan = generate_meal_plan(meals)
+    for day, (meal_name, meal_info) in enumerate(meal_plan, start=1):
+        st.subheader(f'Day {day}: {meal_name}')
+        st.write(meal_info['explanation'])
+        for ingredient in meal_info['ingredients']:
+            amazon_link = create_amazon_link(ingredient)
+            st.markdown(f"- [{ingredient}]({amazon_link})")
 
-if __name__ == "__main__":
-    app()
+# Run this with `streamlit run your_script.py` in your command line

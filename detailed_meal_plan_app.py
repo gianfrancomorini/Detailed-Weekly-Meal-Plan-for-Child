@@ -183,6 +183,15 @@ meals = {
     # Note: This is not the complete list, just a snippet for the sake of demonstration.
 }
 
+# Streamlit UI
+st.title("Weekly Meal Plan")
+
+if st.button("Generate Meal Plan"):
+    sample_meals = random.sample(list(meals.keys()), 7)  # Select 7 random meals for a week
+    for day, meal in enumerate(sample_meals, 1):
+        st.subheader(f"Day {day}: {meal}")
+        st.write("Ingredients:", ", ".join(meals[meal]['ingredients']))
+        st.write("Instructions:", meals[meal]['instructions'])
 
 # Linking ingredients to Amazon referral links
 for meal_name, meal_details in meals.items():
@@ -203,14 +212,6 @@ for day in days_of_week:
             st.write(instruction)
         st.write("---")
 
-# Streamlit UI
-st.title("Weekly Meal Plan")
 
-if st.button("Generate Meal Plan"):
-    sample_meals = random.sample(list(meals.keys()), 7)  # Select 7 random meals for a week
-    for day, meal in enumerate(sample_meals, 1):
-        st.subheader(f"Day {day}: {meal}")
-        st.write("Ingredients:", ", ".join(meals[meal]['ingredients']))
-        st.write("Instructions:", meals[meal]['instructions'])
 
 st.write("Note: Click the button to generate a new meal plan for the week.")

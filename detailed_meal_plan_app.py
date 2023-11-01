@@ -263,7 +263,7 @@ if st.button('Generate Meal Plan'):
 
         # Display Amazon links for ingredients
         st.subheader("Buy Ingredients:")
-        all_ingredients = set(sum([available_meals[meal] for meal in weekly_meal_plan], []))
+       all_ingredients = set(sum([available_meals[meal]['ingredients'] for meal in weekly_meal_plan], []))
         amazon_links = create_amazon_links(all_ingredients, 'gfm0dd-20')
         for ingredient in all_ingredients:
             st.markdown(f"[{ingredient}]({amazon_links[ingredient]})")

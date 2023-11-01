@@ -155,8 +155,8 @@ MEALS = {
     "Quesadillas": {
         "ingredients": ["tortilla", "cheese", "chicken", "bell peppers", "onions"],
         "instructions": ["Place cheese, chicken, peppers, and onions on half of tortilla.", "Fold over and grill until golden brown."],
-    },
-
+    }
+}
 
 allergic_ingredients = st.text_input("Enter allergic ingredients (comma separated)").split(',')
 filtered_meals = {meal_name: details for meal_name, details in meals.items() if not any(allergen in details['ingredients'] for allergen in allergic_ingredients)}

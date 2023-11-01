@@ -39,7 +39,6 @@ meals = {
         'ingredients': ['ground beef', 'breadcrumbs', 'tomato sauce', 'sub roll', 'parmesan cheese'],
         'instructions': 'Mix ground beef with breadcrumbs, form into balls, and cook. Simmer meatballs in sauce, then put in sub roll, top with parmesan, and serve.'
     },
-    # ... Continue adding the rest in the same format
     'Chicken Alfredo Pasta': {
         'ingredients': ['fettuccine', 'chicken', 'alfredo sauce', 'parmesan'],
         'instructions': 'Cook fettuccine as instructed; drain. Sauté chicken until cooked. Combine pasta, chicken, and alfredo sauce. Garnish with parmesan cheese.'

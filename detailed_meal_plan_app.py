@@ -2,6 +2,9 @@
 import streamlit as st
 import random
 
+def amazon_link(ingredient):
+    return f"[{ingredient}](https://www.amazon.com/s?k={ingredient.replace(' ', '+')}&tag=gfm0dd-20)"
+
 # Sample meals, snacks, their preparation instructions, and ingredients
 meals = {
    "Spaghetti with Marinara Sauce": {
@@ -179,6 +182,26 @@ meals = {
     }
     # Note: This is not the complete list, just a snippet for the sake of demonstration.
 }
+
+
+# Linking ingredients to Amazon referral links
+for meal_name, meal_details in meals.items():
+    linked_ingredients = [amazon_link(ingredient) for ingredient in meal_details["ingredients"]]
+    meal_details["ingredients"] = linked_ingredients
+
+days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+for day in days_of_week:
+    st.write(f"## {day}")
+    daily_meals = random.sample(list(meals.keys()), 2)
+    for meal in daily_meals:
+        st.write(f"**Meal:** {meal}")
+        st.write("Ingredients:")
+        for ingredient in meals[meal]["ingredients"]:
+            st.write(ingredient)
+        st.write("Instructions:")
+        for instruction in meals[meal]["instructions"]:
+            st.write(instruction)
+        st.write("---")
 
 # Streamlit UI
 st.title("Weekly Meal Plan")

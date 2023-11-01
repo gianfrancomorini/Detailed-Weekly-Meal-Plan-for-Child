@@ -184,7 +184,7 @@ meals = {
 }
 
 # Streamlit UI
-st.title("Weekly Meal Plan")
+st.title("Children Weekly Meal Plan")
 
 if st.button("Generate Meal Plan"):
     sample_meals = random.sample(list(meals.keys()), 7)  # Select 7 random meals for a week

@@ -1,9 +1,11 @@
 import streamlit as st
-import random
 
-# Expanded list of meals and ingredients (example data, expand to 50 meals as needed)
+# This would be your Amazon referral link
+AMAZON_REFERRAL = "gfm0dd-20"
+
+# Sample meal data structure
 meals = {
-   'Mac & Cheese': {
+    'Mac & Cheese': {
         'ingredients': ['macaroni', 'cheese', 'milk', 'butter'],
         'instructions': 'Cook macaroni as per package instructions; drain. Melt butter in a pot, add milk and cheese, stir until smooth. Mix in macaroni until coated; serve warm.'
     },
@@ -207,68 +209,35 @@ meals = {
         'ingredients': ['sausage', 'bell peppers', 'onion', 'tomato sauce', 'hoagie roll'],
         'instructions': 'Cook sausage with peppers and onion, simmer in tomato sauce, and serve on hoagie rolls.'
     }
+
+    },
+    # Repeat for each day of the week
+    # ...
 }
 
-# Allergens to be excluded
-allergens = {
-    'Dairy': ['cheese', 'milk', 'butter', 'yogurt', 'cream'],
-    'Gluten': ['macaroni', 'breadcrumbs', 'spaghetti', 'bread', 'pizza dough', 'flour', 'cereal'],
-    'Eggs': ['eggs', 'mayonnaise', 'some pastas'],
-    'Nuts': ['peanuts', 'almonds', 'cashews', 'nut butters'],
-    'Soy': ['soy sauce', 'tofu', 'soy milk', 'edamame'],
-    'Seafood': ['fish', 'shrimp', 'lobster', 'crab'],
-    # ... add more allergenic ingredients here if needed
-}
+def generate_meal_plan():
+    # You can add functionality here to generate a meal plan dynamically
+    return meals
 
-# Function to filter meals based on allergens
-def filter_meals(allergens_to_exclude):
-    filtered_meals = {}
-    for meal, details in meals.items():
-        ingredients = details['ingredients']
-        if not any(allergen in ingredients for allergen in allergens_to_exclude):
-            filtered_meals[meal] = details
-    return filtered_meals
+def create_amazon_link(ingredient):
+    return f"https://www.amazon.com/s?k={ingredient.replace(' ', '+')}&tag={AMAZON_REFERRAL}"
 
-# Function to create Amazon links with affiliate tag
-def create_amazon_links(ingredients, affiliate_tag):
-    amazon_base_url = "https://www.amazon.com/s?k={}&tag="
-    return {ingredient: amazon_base_url.format(ingredient.replace(' ', '+')) + affiliate_tag for ingredient in ingredients}
+def display_meal(day, meal_type, meal):
+    st.header(f"{day} {meal_type}")
+    st.subheader(meal["Name"])
+    st.write(meal["Preparation"])
+    st.subheader("Ingredients")
+    for ingredient in meal["Ingredients"]:
+        st.write(f"- {ingredient} ([Buy on Amazon]({create_amazon_link(ingredient)}))")
 
-# Streamlit UI
-st.title("Weekly Meal Planner for Kids")
+def app():
+    st.title("Child Weekly Meal Calendar")
 
-# Select allergens to exclude
-allergens_selected = st.multiselect("Select allergens to filter out:", list(allergens.keys()))
+    weekly_meal_plan = generate_meal_plan()
 
-# Aggregating selected allergens
-allergens_to_exclude = []
-for allergen in allergens_selected:
-    allergens_to_exclude.extend(allergens[allergen])
+    for day, meals in weekly_meal_plan.items():
+        for meal_type, meal in meals.items():
+            display_meal(day, meal_type, meal)
 
-if st.button('Generate Meal Plan'):
-    # Filter meals based on selected allergens
-    available_meals = filter_meals(allergens_to_exclude)
-
-    # Check if there are enough meals to generate a plan
-    if len(available_meals) < 7:
-        st.error("Not enough meals available to generate a full week plan based on selected allergens. Please select fewer restrictions.")
-    else:
-        # Randomly select a meal for each day of the week
-        weekly_meal_plan = random.sample(list(available_meals.keys()), 7)
-
-        # Display the meal plan
-        st.subheader("Your Weekly Meal Plan:")
-        for day, meal in zip(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], weekly_meal_plan):
-            st.markdown(f"**{day}:** {meal}")
-
-        # Display Amazon links for ingredients
-        st.subheader("Buy Ingredients:")
-       all_ingredients = set(sum([available_meals[meal]['ingredients'] for meal in weekly_meal_plan], []))
-        amazon_links = create_amazon_links(all_ingredients, 'gfm0dd-20')
-        for ingredient in all_ingredients:
-            st.markdown(f"[{ingredient}]({amazon_links[ingredient]})")
-
-# The rest of the app remains unchanged
-
-# Save this script as `meal_planner_app.py` and run it with Streamlit using the following command:
-# streamlit run meal_planner_app.py
+if __name__ == "__main__":
+    app()

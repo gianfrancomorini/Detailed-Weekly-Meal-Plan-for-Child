@@ -223,9 +223,10 @@ allergens = {
 # Function to filter meals based on allergens
 def filter_meals(allergens_to_exclude):
     filtered_meals = {}
-    for meal, ingredients in meals.items():
+    for meal, details in meals.items():
+        ingredients = details['ingredients']
         if not any(allergen in ingredients for allergen in allergens_to_exclude):
-            filtered_meals[meal] = ingredients
+            filtered_meals[meal] = details
     return filtered_meals
 
 # Function to create Amazon links with affiliate tag
